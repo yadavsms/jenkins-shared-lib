@@ -9,7 +9,9 @@ def call(Map config) {
             }
         }
         stage('Post') {
-            sh config.postScript
+            docker.image(config.environment).inside {
+                sh config.postScript
+            } 
         }
     }
 }
